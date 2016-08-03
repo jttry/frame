@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>the5fire.com-backbone.js-Hello World</title>
+</head>
+<body>
+<!--     <button id="check">新手报到</button>
+<ul id="world-list">
+</ul> -->
+
+<!--     <a href="#/default/">default</a>
+<a href="#/posts/120">Post 120</a>
+<a href="#/download/user/images/hey.gif">download gif</a>
+<a href="#/dashboard/graph">Load Route/Action View</a>
+<br/>
+<a href="#/manual">Manual</a> -->
+
+
+    <div id="search_container"></div>
+    <script type="text/template" id="search_template">
+        <ul>
+        <% _.each(labels, function(name) { %>
+            <% if(name != "label2") {%>
+            <li><%= name %></li>
+            <% } %>
+        <% }); %>
+        </ul>
+    </script>
+
+    <script src="jquery-1.8.2.min.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone-min.js"></script>
+    <script>
+    (function ($) {
+
+        var SearchView = Backbone.View.extend({
+            el: "#search_container",
+        
+            initialize: function(){
+                var labels = ['label1', 'label2', 'label3'];
+                this.render({labels: labels});
+            },
+        
+            render: function(context) {
+                //使用underscore这个库，来编译模板
+                var template = _.template($("#search_template").html());
+                //加载模板到对应的el属性中
+                $(this.el).html(template(context));
+            },
+        
+        });
+        
+        var searchView = new SearchView();
+
+
+
+
+
+
+        //从上面已经可以看到匹配#标签之后内容的方法，有两种：一种是用“:”来把#后面的对应的位置作为参数；还有一种是“*”，它可以匹配所有的url，下面再来演练一下。
+/*        var AppRouter = Backbone.Router.extend({
+            routes: {
+                "posts/:id" : "getPost",
+                "download/*path": "downloadFile",  //对应的链接为<a href="#/download/user/images/hey.gif">download gif</a>
+                ":route/:action": "loadView",      //对应的链接为<a href="#/dashboard/graph">Load Route/Action View</a>
+                "manual": "manual",
+                "*actions": "defaultRoute",
+            },
+            getPost: function(id) {
+                alert(id);
+            },
+            defaultRoute : function(actions){
+                alert(actions);
+            },
+            downloadFile: function( path ){ 
+                alert(path); // user/images/hey.gif 
+            },
+            loadView: function( route, action ){ 
+                alert(route + "_" + action); // dashboard_graph 
+            },
+            manual: function() {
+                alert("call manual");
+                app_router.navigate("/posts/" + 404, {trigger: true, replace: true});
+            }
+        });
+        
+        var app_router = new AppRouter;
+        
+        Backbone.history.start();*/
+        
+
+/*    
+        var Book = Backbone.Model.extend({
+        
+            defaults : {
+                title:'default'
+            },
+        
+            initialize: function(){
+                //alert('Hey, you create me!');
+            }
+        
+        });
+        
+        var BookShelf = Backbone.Collection.extend({
+            model : Book
+        });
+        
+        var book1 = new Book({title : 'book1'});
+        var book2 = new Book({title : 'book2'});
+        var book3 = new Book({title : 'book3'});
+        
+        //注意这里面是数组,或者使用add
+        //var bookShelf = new BookShelf([book1, book2, book3]);
+        
+        var bookShelf = new BookShelf;
+        
+        bookShelf.add(book1);
+        bookShelf.add(book2);
+        bookShelf.add(book3);
+        //bookShelf.remove(book3);
+        
+        
+        //基于underscore这个js库，还可以使用each的方法获取collection中的数据
+        
+        bookShelf.each(function(book){
+            alert(book.get('title'));
+        });
+
+        var showAllBooks = function(){
+            bookShelf.each(function(book){
+                //将book数据渲染到页面的操作。
+                document.writeln(book.get('title'));
+            });
+        }
+        
+        bookShelf.bind('reset',showAllBooks);
+        bookShelf.url = '/books/'; //注意这里
+        bookShelf.fetch({
+            // 需要主动传递reset，才会触发reset
+            reset: true,
+            success:function(collection, response, options){
+                collection.each(function(book){
+                    alert(book.get('title'));
+                });
+            },error:function(collection, response, options){
+                alert('error');
+            }
+        });*/
+
+/*        World = Backbone.Model.extend({
+            //创建一个World的对象，拥有name属性
+            name: null
+        });
+
+        Worlds = Backbone.Collection.extend({
+            //World对象的集合
+            initialize: function (models, options) {
+                    this.bind("add", options.view.addOneWorld);
+            }
+        });
+
+        AppView = Backbone.View.extend({
+            el: $("body"),
+            initialize: function () {
+                //构造函数，实例化一个World集合类
+                //并且以字典方式传入AppView的对象
+                this.worlds = new Worlds(null, { view : this })
+            },
+            events: {
+                //事件绑定，绑定Dom中id为check的元素
+                "click #check":  "checkIn",
+            },
+            checkIn: function () {
+                var world_name = prompt("请问，您是哪星人?");
+                if(world_name == "") world_name = '未知';
+                var world = new World({ name: world_name });
+                this.worlds.add(world);
+            },
+            addOneWorld: function(model) {
+                $("#world-list").append("<li>这里是来自 <b>" + model.get('name') + "</b> 星球的问候：hello world！</li>");
+            }
+        });
+        //实例化AppView
+        var appview = new AppView;*/
+    })(jQuery);
+    </script>
+</body>
+</html>
